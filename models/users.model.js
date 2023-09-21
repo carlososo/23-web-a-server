@@ -1,5 +1,18 @@
 const { Schema, model } = require('mongoose');
 
+
+const AddressSchema = Schema({
+  street:{
+    type:String,
+  },
+  number:{
+    type:Number,
+  },
+  city:{
+    type:String,
+  }
+})
+
 const UserSchema = Schema({
   userName:{
     type:String,
@@ -27,11 +40,9 @@ const UserSchema = Schema({
     ref: 'Service',
     required: [true, "El servicio es requerido"]
   },
-  // rentals:{
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'Rental',
-  //   required:true
-  // }
+  address:{
+    type:AddressSchema,
+  }
 })
 
 module.exports = model('User', UserSchema)

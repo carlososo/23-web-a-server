@@ -1,8 +1,9 @@
 const { response, request} = require("express")
 
 //Model - Schema
-const User = require('../models/users.model')
-
+const User = require('../models/users.model');
+//Joi
+const { schema } = require('../validators/users.validators')
 
 //Read
 const userGet = async(req = request, res = response) => {
@@ -22,12 +23,11 @@ const userGet = async(req = request, res = response) => {
   }
 }
 
-
 //Create
 const userPost = async(req = request, res = response) => {
 
   try {
-    const { userName, email, phoneNumber, password, state, service } = req.body
+    const { userName, email, phoneNumber, password, state, service  } = req.body
     const data ={userName, email, phoneNumber, password, state, service}
 
     const user = new User(data)

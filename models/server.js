@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { errors } = require('celebrate');
 
 const { dataBaseConnection } = require('../db/database')
 
@@ -27,7 +28,7 @@ class Server {
   }
 
   routes(){
-    this.app.use(this.usersPath, require('../routes/users.routes'));
+    this.app.use(this.usersPath, require('../routes/users.routes'), errors());
     this.app.use(this.servicePath, require('../routes/services.routes'));
 
   }
